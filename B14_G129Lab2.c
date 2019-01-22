@@ -171,7 +171,7 @@ void exercise_3()
                     // Clear flag to indicate that button 2 processed.
                     button2_pushed = false;
                 }
-                else if (getMotorEncoder(motor1) >= 627){
+                else if (getMotorEncoder(motor1) >= 3000){
                 		resetMotorEncoder(motor1);//reset the encoder to get it ready to count the rotation.
                     test_state = MOTOR_STOP;
                 }
@@ -186,7 +186,7 @@ void exercise_3()
                     // Clear flag to indicate that button 2 processed.
                     button1_pushed = false;
                 }
-                else if (getMotorEncoder(motor1) >= -627){
+                else if (getMotorEncoder(motor1) >= -3000){
                 		resetMotorEncoder(motor1);//reset the encoder to get it ready to count the rotation.
                     test_state = MOTOR_STOP;
                 }
