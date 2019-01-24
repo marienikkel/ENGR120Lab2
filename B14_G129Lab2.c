@@ -149,48 +149,46 @@ void exercise_3()
                 if ( button1_pushed ) {
                     // If button1 pushed, change to the MOTOR_FORWARD state.
                 		resetMotorEncoder(motor1);//reset the encoder to get it ready to count the rotation.
-                    test_state = MOTOR_FORWARD;
-                    // Clear flag to indicate button 1 processed.
-                    button1_pushed = false;
+                    test_state = MOTOR_FORWARD; // set motor to forward rotation
+                    button1_pushed = false; // Clear flag to indicate button 1 processed
                 }
                 else if ( button2_pushed ) {
                     // If button1 pushed, change to the MOTOR_BACKWARD state.
                 		resetMotorEncoder(motor1);//reset the encoder to get it ready to count the rotation.
-                    test_state = MOTOR_BACKWARD;
-                    // Clear flag to indicate button 1 processed.
-                    button1_pushed = false;
+                    test_state = MOTOR_BACKWARD; 
+                    button1_pushed = false; // Clear flag to indicate button 1 processed.
                 }
                 break;
             case MOTOR_FORWARD:
                 // Turn motor on.
-                motor[motor1] = 50;
-                button1_pushed = false;
+                motor[motor1] = 50; // set motor to speed 50 forward
+                button1_pushed = false;// clear flag to indicate button 1 processed 
                 if (button2_pushed && getMotorEncoder(motor1) >= 3000) {
                     // If button 2 pushed, transition to MOTOR_STOP state.
                 		resetMotorEncoder(motor1);//reset the encoder to get it ready to count the rotation.
-                    test_state = MOTOR_BACKWARD;
+                    test_state = MOTOR_BACKWARD;// transition to motor backward 
                     // Clear flag to indicate that button 2 processed.
-                    button2_pushed = false;
+                    button2_pushed = false; // clear flag to indicate button 2 processed
                 }
                 if (getMotorEncoder(motor1) >= 3000){
                 		resetMotorEncoder(motor1);//reset the encoder to get it ready to count the rotation.
-                    test_state = MOTOR_STOP;
+                    test_state = MOTOR_STOP;//tranisition to motor stop
                 }
                 break;
             case MOTOR_BACKWARD:
                 // Turn motor on.
-                motor[motor1] = -50;
-                button2_pushed = false;
+                motor[motor1] = -50;//set motor to speed 50 backwards
+                button2_pushed = false;// clear flag to indicate button 2 processed
                 if (button1_pushed && getMotorEncoder(motor1) <= -3000) {
-                    // If button 2 pushed, transition to MOTOR_STOP state.
+                    // If button 2 pushed, transition to MOTOR_STOP state. (after completeion of 3000 points of rotation)
                 		resetMotorEncoder(motor1);//reset the encoder to get it ready to count the rotation.
-                    test_state = MOTOR_FORWARD;
+                    test_state = MOTOR_FORWARD; // transition to motor forward
                     // Clear flag to indicate that button 2 processed.
-                    button1_pushed = false;
+                    button1_pushed = false;//clear flag to indicate button 1 processed
                 }
                 if (getMotorEncoder(motor1) <= -3000){
                 		resetMotorEncoder(motor1);//reset the encoder to get it ready to count the rotation.
-                    test_state = MOTOR_STOP;
+                    test_state = MOTOR_STOP;//transition to motor stop
                 }
                 break;
             default:
